@@ -21,7 +21,7 @@ jobs:
         coverage: none
 
     - name: Validate composer.json and composer.lock
-      working-directory: ./wp-plugin-scaffold
+      working-directory: ./wp-ticket-stand
       run: composer validate --strict
 
     - name: Cache Composer packages
@@ -34,12 +34,12 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      working-directory: ./wp-plugin-scaffold
+      working-directory: ./wp-ticket-stand
       run: composer install --prefer-dist --no-progress
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: wp-plugin-scaffold
-        path: ./wp-plugin-scaffold
+        name: wp-ticket-stand
+        path: ./wp-ticket-stand
         retention-days: 7
