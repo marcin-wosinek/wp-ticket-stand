@@ -10,8 +10,10 @@
 namespace TicketStand;
 
 use TicketStand\Database\Database_Manager;
-use TicketStand\Database\Tables\Customers_Table;
-use TicketStand\Database\Tables\Tickets_Table;
+use TicketStand\Database\Tables\Events_Table;
+use TicketStand\Database\Tables\Ticket_Types_Table;
+use TicketStand\Database\Tables\Event_Extras_Table;
+use TicketStand\Database\Tables\Ticket_Type_Extras_Table;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -47,11 +49,15 @@ class Plugin_Activator {
 		$db_manager = new Database_Manager();
 		
 		// Register tables.
-		$customers_table = new Customers_Table();
-		$tickets_table = new Tickets_Table();
+		$events_table = new Events_Table();
+		$ticket_types_table = new Ticket_Types_Table();
+		$event_extras_table = new Event_Extras_Table();
+		$ticket_type_extras_table = new Ticket_Type_Extras_Table();
 		
-		$db_manager->register_table( $customers_table );
-		$db_manager->register_table( $tickets_table );
+		$db_manager->register_table( $events_table );
+		$db_manager->register_table( $ticket_types_table );
+		$db_manager->register_table( $event_extras_table );
+		$db_manager->register_table( $ticket_type_extras_table );
 		
 		// Install tables.
 		$db_manager->install();

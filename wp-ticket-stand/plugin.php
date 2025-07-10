@@ -36,8 +36,14 @@ define('TICKET_STAND_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once TICKET_STAND_PLUGIN_DIR . 'includes/class-plugin-activator.php';
 require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/class-database-manager.php';
 require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/class-table-base.php';
-require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-customers-table.php';
-require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-tickets-table.php';
+
+// Load table classes
+require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-events-table.php';
+require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-ticket-types-table.php';
+require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-event-extras-table.php';
+require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/tables/class-ticket-type-extras-table.php';
+
+// Load migration classes
 require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/migrations/class-migration-base.php';
 require_once TICKET_STAND_PLUGIN_DIR . 'includes/database/migrations/class-migration-manager.php';
 
@@ -52,11 +58,15 @@ function init() {
     $db_manager = new Database\Database_Manager();
     
     // Register tables
-    $customers_table = new Database\Tables\Customers_Table();
-    $tickets_table = new Database\Tables\Tickets_Table();
+    $events_table = new Database\Tables\Events_Table();
+    $ticket_types_table = new Database\Tables\Ticket_Types_Table();
+    $event_extras_table = new Database\Tables\Event_Extras_Table();
+    $ticket_type_extras_table = new Database\Tables\Ticket_Type_Extras_Table();
     
-    $db_manager->register_table($customers_table);
-    $db_manager->register_table($tickets_table);
+    $db_manager->register_table($events_table);
+    $db_manager->register_table($ticket_types_table);
+    $db_manager->register_table($event_extras_table);
+    $db_manager->register_table($ticket_type_extras_table);
 }
 
 // Initialize the plugin

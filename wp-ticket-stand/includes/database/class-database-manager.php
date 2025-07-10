@@ -41,7 +41,7 @@ class Database_Manager {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->db_version = get_option( $this->version_option_name, '0.0.0' );
+		$this->db_version = get_option( $this->version_option_name, TICKET_STAND_VERSION );
 		$this->register_hooks();
 	}
 
